@@ -1,11 +1,29 @@
 import { Routes } from '@angular/router';
 import { MainDashboardComponent } from './dashboards/main-dashboard/main-dashboard.component';
-import { StudentLoginComponent } from './auth/student-login/student-login.component';
-import {TeacherLoginComponent} from './auth/teacher-login/teacher-login.component';
+import {LoginComponent} from './auth/login/login.component';
+import {SignupComponent} from './auth/signup/signup.component';
+import {MathQuizComponent} from './quizes/math-quiz/math-quiz.component';
+import {EnglishQuizComponent} from './quizes/english-quiz/english-quiz.component';
+import {ScienceQuizComponent} from './quizes/science-quiz/science-quiz.component';
+import {HistoryQuizComponent} from './quizes/history-quiz/history-quiz.component';
+import {MathSolveQuizComponent} from './quizes/solved-quizes/math-solve-quiz/math-solve-quiz.component';
+import {HistorySolveQuizComponent} from './quizes/solved-quizes/history-solve-quiz/history-solve-quiz.component';
+import {EnglishSolveQuizComponent} from './quizes/solved-quizes/english-solve-quiz/english-solve-quiz.component';
+import {ScienceSolveQuizComponent} from './quizes/solved-quizes/science-solve-quiz/science-solve-quiz.component';
+
 
 export const routes: Routes = [
-  { path: 'app-main-dashboard', component: MainDashboardComponent },
-  { path: 'app-student-login', component: StudentLoginComponent },
-  {path:'app-teacher-login', component: TeacherLoginComponent },
-  { path: '**', redirectTo: '/app-main-dashboard', pathMatch: 'full' }, // Wildcard route should come last
+  { path: 'app-login', component: LoginComponent },
+  {path:'app-signup', component: SignupComponent},
+  {path:'app-main-dashboard', component: MainDashboardComponent},
+  {path:'app-math-quiz',component:MathQuizComponent},
+  {path:'app-english-quiz',component:EnglishQuizComponent},
+  {path:'app-science-quiz',component:ScienceQuizComponent},
+  {path:'app-history-quiz',component:HistoryQuizComponent},
+  {path:'app-math-solve-quiz',component:MathSolveQuizComponent},
+  {path:'app-history-solve-quiz',component:HistorySolveQuizComponent},
+  {path:'app-english-solve-quiz',component:EnglishSolveQuizComponent},
+  {path:'app-science-solve-quiz',component:ScienceSolveQuizComponent},
+
+  { path: '**', redirectTo: '/app-login', pathMatch: 'full' }, // Wildcard route should come last
 ];

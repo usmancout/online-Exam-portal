@@ -1,0 +1,120 @@
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(180deg, #eef1f5, #5a3ea6);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.login-box {
+  background-color: #1c1f4a;
+  color: #fff;
+  width: 400px;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+p {
+  margin: 0 0 20px 0;
+  font-size: 1rem;
+  color: #a0a3c4;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+label {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  color: #a0a3c4;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #5e5e90;
+  border-radius: 8px;
+  outline: none;
+  background-color: #2a2d6d;
+  color: #fff;
+}
+
+button {
+  background-color: #5e5e90;
+  color: #fff;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100%;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button:hover {
+  background-color: #7a71ff;
+}
+
+.forgot-password {
+  color: #a0a3c4;
+  font-size: 0.9rem;
+  display: block;
+  margin-top: 15px;
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+.signup-link {
+  display: block;
+  margin-top: 20px;
+  color: #7a71ff;
+  text-decoration: none;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+}
+
+/* Add this CSS to your component's CSS file */
+/*body {*/
+/*  background-image: url('assets/background.jpg'); !* Replace with your image path *!*/
+/*  background-size: cover; !* Ensures the image covers the entire background *!*/
+/*  background-repeat: no-repeat;*/
+/*  background-position: center;*/
+/*  height: 100vh;*/
+/*  margin: 0;*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  align-items: center;*/
+/*}*/
+

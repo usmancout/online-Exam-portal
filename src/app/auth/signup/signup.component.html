@@ -1,0 +1,40 @@
+<div class="signup-container">
+  <div class="signup-box">
+    <h2>Sign Up</h2>
+    <p>Welcome! Create your account below:</p>
+    <form (ngSubmit)="onSignup()" #signupForm="ngForm">
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          [(ngModel)]="username"
+          required
+        />
+      </div>
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          [(ngModel)]="email"
+          required
+        />
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="password"
+          required
+        />
+      </div>
+      <button type="submit" [disabled]="!signupForm.valid">SIGN UP</button>
+    </form>
+    <a [routerLink]="'/app-login'" class="back-to-login">← Back to Login</a>
+  </div>
+</div>

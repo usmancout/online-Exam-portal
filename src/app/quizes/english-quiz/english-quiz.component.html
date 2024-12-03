@@ -1,0 +1,14 @@
+<div class="quiz-container">
+  <h1>English Quiz Instructions</h1>
+  <p>Please read the instructions before starting:</p>
+  <ul>
+    <li>Each question will have a time limit of 30 seconds.</li>
+    <li>You can skip questions, but they will not be scored.</li>
+    <li>Make sure to focus and enjoy!</li>
+  </ul>
+  <label for="questions">Select number of questions:</label>
+  <select id="questions" #numQuestions>
+    <option *ngFor="let n of [5, 10, 15, 20]" [value]="n">{{ n }}</option>
+  </select>
+  <button (click)="startQuiz(numQuestions.value)">Start Quiz</button>
+</div>

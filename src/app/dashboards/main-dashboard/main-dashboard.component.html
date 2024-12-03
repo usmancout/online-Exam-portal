@@ -1,16 +1,25 @@
-<div class="container">
-  <div class="card student">
-    <h2>Student</h2>
-    <button (click)="onStudentSignIn()">Sign In</button>
-  </div>
+<div class="dashboard-full">
+  <header>
+    <h1>Welcome to the Quiz Dashboard</h1>
+    <p>Select a subject to start your quiz</p>
+  </header>
 
-  <div class="card teacher">
-    <h2>Teacher</h2>
-    <button (click)="onTeacherSignIn()">Sign In</button>
-  </div>
-
-  <div class="card admin">
-    <h2>Admin</h2>
-    <button (click)="onAdminSignIn()">Sign In</button>
-  </div>
+  <main class="subjects-container">
+    <div class="subject-card" (click)="startQuiz('Math')">
+      <h2>Math</h2>
+      <p>Challenge yourself with numbers!</p>
+    </div>
+    <div class="subject-card" (click)="startQuiz('Science')">
+      <h2>Science</h2>
+      <p>Explore the wonders of the universe!</p>
+    </div>
+    <div class="subject-card" (click)="startQuiz('History')">
+      <h2>History</h2>
+      <p>Dive into the past and learn history!</p>
+    </div>
+    <div class="subject-card" (click)="startQuiz('English')">
+      <h2>English</h2>
+      <p>Test your grammar and vocabulary!</p>
+    </div>
+  </main>
 </div>

@@ -1,0 +1,49 @@
+<div class="quiz-container">
+  <h1>Math Quiz</h1>
+
+  <div *ngIf="currentQuestionIndex < questions.length; else resultTemplate">
+    <p><strong>Question {{ currentQuestionIndex + 1 }}:</strong></p>
+    <p>{{ questions[currentQuestionIndex].question }}</p>
+
+    <div class="options">
+      <button
+        *ngFor="let option of questions[currentQuestionIndex].options"
+        (click)="selectAnswer(option)"
+        [class.selected]="selectedAnswers[currentQuestionIndex] === option"
+      >
+        {{ option }}
+      </button>
+    </div>
+
+    <p>Time Remaining: {{ timer }} seconds</p>
+
+    <div class="navigation-buttons">
+      <button (click)="previousQuestion()" [disabled]="currentQuestionIndex === 0">
+        Previous
+      </button>
+      <button (click)="skipQuestion()">Skip</button>
+      <button
+        class="submit-btn"
+        (click)="nextQuestion()"
+        [disabled]="!selectedAnswers[currentQuestionIndex]"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+
+  <ng-template #resultTemplate>
+    <div class="result-container">
+      <h2>Quiz Completed!</h2>
+      <p *ngIf="score >= questions.length / 2; else tryAgainMessage">
+        Congratulations! You scored {{ score }}/{{ questions.length }}.
+      </p>
+      <ng-template #tryAgainMessage>
+        <p>Try again! You scored {{ score }}/{{ questions.length }}.</p>
+      </ng-template>
+      <button (click)="router.navigate(['/app-main-dashboard'])">
+        Go Back to Dashboard
+      </button>
+    </div>
+  </ng-template>
+</div>
