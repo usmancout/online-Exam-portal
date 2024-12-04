@@ -1,9 +1,11 @@
 /* General Reset */
 body {
   margin: 0;
+  margin-bottom: 90px;
   font-family: 'Arial', sans-serif;
 }
 
+/* Gradient Background */
 .gradient-background {
   position: fixed; /* Ensures it covers the viewport */
   top: 0;
@@ -20,14 +22,15 @@ body {
 /* Sign Up Container */
 .signup-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 60%;
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+  height: 85.5vh; /* Uses full viewport height */
   width: 100%;
-  margin-top: 40px;
-  margin-bottom: 30px;
-  position: relative; /* Enables z-index for proper layering */
-  z-index: 1; /* Places above the gradient background */
+  padding: 1px;
+  margin-bottom: 22px;
+  /* Remove any extra margins */
+  position: relative;
+  z-index: 2; /* Places above the gradient background */
 }
 
 /* Sign Up Box */
@@ -90,7 +93,7 @@ button {
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 10px;
   width: 100%;
 }
 
