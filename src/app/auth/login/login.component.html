@@ -2,6 +2,7 @@
   <div class="login-box">
     <h2>Here you can Login</h2>
     <p>Let's join us :)</p>
+    <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
     <form (ngSubmit)="onLogin()" #loginForm="ngForm">
       <div class="input-group">
         <label for="email">Email</label>

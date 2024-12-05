@@ -3,6 +3,9 @@ const app=express();
 const port= 3000;
 const mongoDB=require("./utils/db");
 const routes=require("./router/auth-router.js");
+const cors = require('cors');
+app.use(cors());  // Enable CORS for all origins
+
 
 app.use(express.json());
 
