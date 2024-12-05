@@ -1,48 +1,70 @@
+/* General Reset */
 body {
   margin: 0;
+  margin-bottom: 90px;
   font-family: 'Arial', sans-serif;
-  background: linear-gradient(180deg, #eef1f5, #5a3ea6);
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
+/* Gradient Background */
+.gradient-background {
+  position: fixed; /* Ensures it covers the viewport */
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width */
+  height: 120%; /* Full height */
+  background: linear-gradient(180deg, #add8e6, #5a3ea6); /* Light blue to dark blue gradient */
+  z-index: 0; /* Ensures it stays behind other elements */
+  margin-top: 70px; /* Removes any white line caused by margins */
+  padding: 0; /* Ensures no internal spacing */
+  overflow: hidden; /* Prevents any unintended scrolling */
+}
+
+/* Sign Up Container */
 .signup-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+  height: 85.5vh; /* Uses full viewport height */
   width: 100%;
-  height: 100%;
+  padding: 1px;
+  margin-bottom: 22px;
+  /* Remove any extra margins */
+  position: relative;
+  z-index: 2; /* Places above the gradient background */
 }
 
+/* Sign Up Box */
 .signup-box {
   background-color: #1c1f4a;
   color: #fff;
   width: 400px;
-  padding: 30px;
-  border-radius: 15px;
+  padding: 20px;
+  border-radius: 30px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   text-align: center;
 }
 
+/* Headings */
 h2 {
   margin: 0;
   font-size: 1.8rem;
   margin-bottom: 10px;
 }
 
+/* Paragraph */
 p {
   margin: 0 0 20px 0;
   font-size: 1rem;
   color: #a0a3c4;
 }
 
+/* Input Field Group */
 .input-group {
   margin-bottom: 20px;
   text-align: left;
 }
 
+/* Label Styling */
 label {
   display: block;
   font-size: 0.9rem;
@@ -50,8 +72,9 @@ label {
   color: #a0a3c4;
 }
 
+/* Input Fields */
 input {
-  width: 100%;
+  width: 95%;
   padding: 10px;
   font-size: 1rem;
   border: 1px solid #5e5e90;
@@ -61,6 +84,7 @@ input {
   color: #fff;
 }
 
+/* Button Styling */
 button {
   background-color: #5e5e90;
   color: #fff;
@@ -69,19 +93,22 @@ button {
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 10px;
   width: 100%;
 }
 
+/* Disabled Button */
 button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
+/* Hover Effect on Button */
 button:hover {
   background-color: #7a71ff;
 }
 
+/* Back to Login Link */
 .back-to-login {
   color: #7a71ff;
   font-size: 0.9rem;
@@ -90,6 +117,7 @@ button:hover {
   text-decoration: none;
 }
 
+/* Hover Effect on Link */
 .back-to-login:hover {
   text-decoration: underline;
 }
