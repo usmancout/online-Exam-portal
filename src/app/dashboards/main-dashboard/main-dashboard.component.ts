@@ -14,7 +14,7 @@ export class MainDashboardComponent implements OnInit {
   username: string='';
   constructor(private router: Router, private userService: UserService) {}
   ngOnInit() {
-    this.username = this.userService.getEmail() || 'Guest';
+    this.username = this.userService.getUserName() || 'Guest';
 
 
   }

@@ -33,6 +33,7 @@ header p {
 .subject-card {
   background: #ffffff10;
   padding: 1.5rem;
+  margin-top: 20px;
   border-radius: 10px;
   cursor: pointer;
   transition: transform 0.2s, background 0.2s;

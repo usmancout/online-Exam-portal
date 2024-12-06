@@ -1,5 +1,18 @@
 <header class="header">
   <div class="header-content">
     <h1>Online Exam Portal</h1>
+
+    <!-- Only show the dropdown button if the user is logged in -->
+    <div class="dropdown" *ngIf="isLoggedIn">
+      <button class="dropdown-button" (click)="toggleDropdown()">
+        {{ username }} <span>&#9660;</span>
+      </button>
+      <div class="dropdown-menu" *ngIf="dropdownVisible">
+        <ul>
+          <li (click)="goToProfile()">Profile</li>
+          <li (click)="logout()">Logout</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </header>

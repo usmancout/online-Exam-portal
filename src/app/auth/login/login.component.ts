@@ -35,7 +35,7 @@ export class LoginComponent {
     this.http.post('http://localhost:3000/api/auth/login', loginData).subscribe({
       next: (response: any) => {
         if (response && response.user && response.user.username) {
-          this.userService.setEmail(response.user.username); // Save email in service/localStorage
+          this.userService.setUserName(response.user.username); // Save email in service/localStorage
           this.router.navigate(['/app-main-dashboard']);
         } else {
           console.error('Username not found in response:', response);

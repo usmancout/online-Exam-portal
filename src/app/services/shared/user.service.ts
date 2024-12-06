@@ -1,18 +1,22 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class UserService {
-  setEmail(username: string) {
-    localStorage.setItem('username', username);
+  private usernameSubject = new BehaviorSubject<string | null>(null);  // Default to null
+  username$ = this.usernameSubject.asObservable();  // Observable for components to subscribe to
+
+  setUserName(username: string) {
+    this.usernameSubject.next(username);  // Update username
   }
 
-  getEmail(): string | null {
-    return localStorage.getItem('username');
+  getUserName(): string | null {
+    return this.usernameSubject.value;  // Return current username
   }
 
-  clearEmail() {
-    localStorage.removeItem('username');
+  clearUserName() {
+    this.usernameSubject.next(null);  // Clear username on logout
   }
 }
