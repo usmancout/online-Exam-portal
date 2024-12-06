@@ -3,7 +3,12 @@
     <div class="login-box">
       <h2>Here you can Login</h2>
       <p>Let's join us :)</p>
-      <p *ngIf="errorMessage" >{{errorMessage}}</p>
+      <nav *ngIf="errorMessage" class="error-message">
+        <ul>
+          {{errorMessage}}
+        </ul>
+      </nav>
+
 
       <form (ngSubmit)="onLogin()" #loginForm="ngForm">
         <div class="input-group">

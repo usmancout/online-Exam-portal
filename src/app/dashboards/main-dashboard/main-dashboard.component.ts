@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import {UserService} from '../../services/shared/user.service';
+import {OnInit} from '@angular/core';
+
 
 @Component({
   selector: 'app-main-dashboard',
@@ -7,8 +10,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./main-dashboard.component.css'],
   standalone: true
 })
-export class MainDashboardComponent {
-  constructor(private router: Router) {}
+export class MainDashboardComponent implements OnInit {
+  username: string='';
+  constructor(private router: Router, private userService: UserService) {}
+  ngOnInit() {
+    this.username = this.userService.getEmail() || 'Guest';
+
+
+  }
+
+
 
   startQuiz(subject: string) {
     if (subject === 'Math') {

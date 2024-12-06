@@ -8,7 +8,13 @@ const jwt = require('jsonwebtoken');  // Import jsonwebtoken for token generatio
 
 router.get('/', (req, res) => {
   console.log(`welcome to home page`);
+  res.send("hello world");
 })
+
+
+
+
+
 router.post('/signup', async (req, res) => {
   const { username, email, password } = req.body;
   try {
@@ -30,7 +36,10 @@ router.post('/signup', async (req, res) => {
 
     return res.status(201).json({
       message: 'User created successfully',
-      user: { username: newUser.username, email: newUser.email }
+      user: {
+        username:newUser.username,
+        email:newUser.email
+      }
     });
   } catch (error) {
     console.error(error);
@@ -55,22 +64,27 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
-    // Generate a JWT token (You can customize the payload)
+    // Generate a JWT token
     const token = jwt.sign(
       { userId: user._id, username: user.username, email: user.email },
       'hellomoto', // Replace with a secure secret key
       { expiresIn: '1h' } // Token expires in 1 hour
     );
 
-    // Send a success response with the token
+    // Send a success response with the token and user info
     return res.status(200).json({
       message: 'Login successful',
-      token: token
+      token: token,
+      user: {
+        username: user.username, // Use the username from the user object
+        email: user.email,       // Use the email from the user object
+      },
     });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'Server error' });
   }
 });
+
 
 module.exports = router;
