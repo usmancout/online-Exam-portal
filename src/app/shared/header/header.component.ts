@@ -1,8 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '../../services/shared/user.service';
-import { Subscription } from 'rxjs';
-import {NgIf} from '@angular/common';
+import { NgIf } from "@angular/common";
 
 @Component({
   selector: 'app-header',
@@ -13,26 +11,24 @@ import {NgIf} from '@angular/common';
   ],
   standalone: true
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnInit {
   username: string = 'Guest';  // Default username
+  email: string = '';         // Default email
   dropdownVisible: boolean = false;  // Dropdown visibility
   isLoggedIn: boolean = false;  // Login state
-  private usernameSubscription!: Subscription;
 
-  constructor(private router: Router, private userService: UserService) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
-    // Subscribe to username changes from the UserService
-    this.usernameSubscription = this.userService.username$.subscribe(username => {
-      this.username = username || 'Guest';  // Set to 'Guest' if no user is logged in
-      this.isLoggedIn = this.username !== 'Guest';  // Set login state
-    });
-  }
+    // Get username and email from localStorage
+    const storedUsername = localStorage.getItem('userName');
+    const storedEmail = localStorage.getItem('userEmail');
 
-  ngOnDestroy() {
-    // Unsubscribe from the username observable to prevent memory leaks
-    if (this.usernameSubscription) {
-      this.usernameSubscription.unsubscribe();
+    // Set username and email if found
+    if (storedUsername && storedEmail) {
+      this.username = storedUsername;
+      this.email = storedEmail;
+      this.isLoggedIn = true;  // User is logged in
     }
   }
 
@@ -43,7 +39,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   logout() {
     // Clear user data and navigate to login page
-    this.userService.clearUserName();
+    localStorage.removeItem('userEmail');
+    localStorage.removeItem('userName');
+    this.isLoggedIn = false;  // Update login state
+    this.username = 'Guest'; // Reset username
+    this.email = '';         // Reset email
     this.router.navigate(['/app-login']);
   }
 

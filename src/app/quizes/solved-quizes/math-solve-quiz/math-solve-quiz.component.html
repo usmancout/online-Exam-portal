@@ -1,9 +1,14 @@
-<div class="quiz-container">
+<div class="loading" *ngIf="isLoading">
+  <div class="loading-spinner"></div>
+  <p>Loading questions...</p>
+</div>
+
+<div class="quiz-container" *ngIf="!isLoading">
   <h1>Math Quiz</h1>
 
-  <div *ngIf="currentQuestionIndex < questions.length; else resultTemplate">
+  <div *ngIf="currentQuestionIndex >=0; else resultTemplate">
     <p><strong>Question {{ currentQuestionIndex + 1 }}:</strong></p>
-    <p>{{ questions[currentQuestionIndex].question }}</p>
+    <p [innerHTML]="questions[currentQuestionIndex].question"></p>
 
     <div class="options">
       <button
@@ -21,12 +26,7 @@
       <button (click)="previousQuestion()" [disabled]="currentQuestionIndex === 0">
         Previous
       </button>
-      <button (click)="skipQuestion()">Skip</button>
-      <button
-        class="submit-btn"
-        (click)="nextQuestion()"
-        [disabled]="!selectedAnswers[currentQuestionIndex]"
-      >
+      <button (click)="nextQuestion()" [disabled]="!selectedAnswers[currentQuestionIndex]">
         Next
       </button>
     </div>
@@ -35,15 +35,9 @@
   <ng-template #resultTemplate>
     <div class="result-container">
       <h2>Quiz Completed!</h2>
-      <p *ngIf="score >= questions.length / 2; else tryAgainMessage">
-        Congratulations! You scored {{ score }}/{{ questions.length }}.
-      </p>
-      <ng-template #tryAgainMessage>
-        <p>Try again! You scored {{ score }}/{{ questions.length }}.</p>
-      </ng-template>
-      <button (click)="router.navigate(['/app-main-dashboard'])">
-        Go Back to Dashboard
-      </button>
+      <p>Hi {{username}} You answered {{ correctAnswers.length }} correctly out of {{ questions.length }} questions.</p>
+      <p>Your Score: {{ score }}/{{ questions.length }}</p>
+      <button (click)="navigateToDashboard()">Go Back to Dashboard</button>
     </div>
   </ng-template>
 </div>

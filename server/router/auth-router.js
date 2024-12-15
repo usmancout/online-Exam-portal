@@ -1,20 +1,26 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../user-schema');
-const bcrypt = require('bcrypt');  // Import bcrypt for password hashing
-const jwt = require('jsonwebtoken');  // Import jsonwebtoken for token generation
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
+// Helper function to authenticate user with JWT
+const authenticate = (req, res, next) => {
+  const token = req.header('Authorization')?.replace('Bearer ', ''); // Extract token from Authorization header
+  if (!token) {
+    return res.status(401).json({ message: 'Access denied. No token provided.' });
+  }
+
+  try {
+    const decoded = jwt.verify(token, 'hellomoto'); // Verify JWT token
+    req.user = decoded; // Attach user data to request
+    next();
+  } catch (error) {
+    return res.status(400).json({ message: 'Invalid token.' });
+  }
+};
 
 // Existing route for signup
-
-router.get('/', (req, res) => {
-  console.log(`welcome to home page`);
-  res.send("hello world");
-})
-
-
-
-
-
 router.post('/signup', async (req, res) => {
   const { username, email, password } = req.body;
   try {
@@ -31,14 +37,15 @@ router.post('/signup', async (req, res) => {
     const newUser = await User.create({
       username,
       email,
-      password: hashedPassword,  // Store hashed password
+      password: hashedPassword,
     });
 
     return res.status(201).json({
       message: 'User created successfully',
       user: {
-        username:newUser.username,
-        email:newUser.email
+        username: newUser.username,
+        email: newUser.email,
+
       }
     });
   } catch (error) {
@@ -47,7 +54,7 @@ router.post('/signup', async (req, res) => {
   }
 });
 
-// New route for login
+// Login route (using JWT for authentication)
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -77,7 +84,8 @@ router.post('/login', async (req, res) => {
       token: token,
       user: {
         username: user.username, // Use the username from the user object
-        email: user.email,       // Use the email from the user object
+        email: user.email,
+
       },
     });
   } catch (error) {
@@ -85,6 +93,10 @@ router.post('/login', async (req, res) => {
     return res.status(500).json({ message: 'Server error' });
   }
 });
+
+
+
+
 
 
 module.exports = router;

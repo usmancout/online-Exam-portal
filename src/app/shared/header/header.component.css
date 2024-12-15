@@ -22,7 +22,7 @@
 .dropdown-button {
   background: none;
   border: none;
-  color: white;
+  color: #fbfbfb;
   cursor: pointer;
   font-size: 16px;
 }
@@ -31,7 +31,7 @@
   position: absolute;
   top: 100%;
   right: 0;
-  background: #ca1414;
+  background: #a32525;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   overflow: hidden;
@@ -49,5 +49,5 @@
 }
 
 .dropdown-menu li:hover {
-  background-color: #e80000;
+  background-color: #c80c0c;
 }

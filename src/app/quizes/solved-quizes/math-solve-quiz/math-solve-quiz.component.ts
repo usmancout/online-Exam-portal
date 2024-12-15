@@ -1,48 +1,48 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {NgForOf, NgIf} from '@angular/common';
+import { QuizService } from '../../../services/quiz-service/quiz.service';
+import { NgForOf, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-math-solve-quiz',
   templateUrl: './math-solve-quiz.component.html',
   styleUrls: ['./math-solve-quiz.component.css'],
-  standalone: true,
   imports: [NgIf, NgForOf],
+  standalone: true,
 })
-export class MathSolveQuizComponent {
-  questions = [
-    {
-      question: 'What is 5 + 3?',
-      options: ['6', '7', '8', '9'],
-      answer: '8',
-    },
-    {
-      question: 'What is 10 - 4?',
-      options: ['5', '6', '7', '8'],
-      answer: '6',
-    },
-    {
-      question: 'What is 7 * 2?',
-      options: ['12', '14', '16', '18'],
-      answer: '14',
-    },
-    {
-      question: 'What is 9 / 3?',
-      options: ['2', '3', '4', '5'],
-      answer: '3',
-    },
-  ];
-
+export class MathSolveQuizComponent implements OnInit {
+  questions: any[] = [];
   currentQuestionIndex = 0;
-  selectedAnswers: (string | null)[] = Array(this.questions.length).fill(null);
+  selectedAnswers: (string | null)[] = [];
+  correctAnswers: string[] = [];
   score = 0;
-  timer: number = 30; // 30 seconds per question
+  timer = 30; // 30 seconds per question
   interval: any;
+  isLoading = true;
+  username: string | null ='';
 
-  constructor(protected router: Router) {}
+  constructor(private quizService: QuizService, private router: Router) {}
 
   ngOnInit() {
-    this.startTimer();
+    this.loadQuestions();
+  }
+
+  loadQuestions() {
+    this.quizService.fetchMathQuizQuestions().subscribe(
+      (response) => {
+        this.questions = response.results.map((q: any) => ({
+          question: q.question,
+          options: [...q.incorrect_answers, q.correct_answer].sort(() => Math.random() - 0.5),
+          answer: q.correct_answer,
+        }));
+        this.selectedAnswers = Array(this.questions.length).fill(null);
+        this.isLoading = false;
+        this.startTimer();
+      },
+      (error) => {
+        console.error('Failed to load questions', error);
+      }
+    );
   }
 
   startTimer() {
@@ -78,32 +78,25 @@ export class MathSolveQuizComponent {
       this.currentQuestionIndex++;
       this.startTimer();
     } else {
-      this.showResult();
+      this.submitQuiz();
+      this.currentQuestionIndex = -1; // Set to -1 to trigger the result template
     }
   }
 
-  skipQuestion() {
-    this.nextQuestion();
-  }
-
-  submitAnswer() {
+  submitQuiz() {
+    this.stopTimer();
     this.calculateScore();
-    this.showResult();
   }
 
   calculateScore() {
-    this.score = this.questions.reduce((total, question, index) => {
-      return total + (this.selectedAnswers[index] === question.answer ? 1 : 0);
-    }, 0);
+    this.username=localStorage.getItem('userName');
+    this.correctAnswers = this.questions
+      .filter((question, index) => this.selectedAnswers[index] === question.answer)
+      .map((question) => question.answer);
+    this.score = this.correctAnswers.length;
   }
 
-  showResult() {
-    this.stopTimer();
-    const message =
-      this.score >= this.questions.length / 2
-        ? `Congratulations! You scored ${this.score}/${this.questions.length}.`
-        : `Try again! You scored ${this.score}/${this.questions.length}.`;
-
-    alert(message);
+  navigateToDashboard() {
+    this.router.navigate(['/app-main-dashboard']);
   }
 }

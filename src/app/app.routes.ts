@@ -10,6 +10,7 @@ import {MathSolveQuizComponent} from './quizes/solved-quizes/math-solve-quiz/mat
 import {HistorySolveQuizComponent} from './quizes/solved-quizes/history-solve-quiz/history-solve-quiz.component';
 import {EnglishSolveQuizComponent} from './quizes/solved-quizes/english-solve-quiz/english-solve-quiz.component';
 import {ScienceSolveQuizComponent} from './quizes/solved-quizes/science-solve-quiz/science-solve-quiz.component';
+import {ProfileComponent} from './dashboards/profile/profile.component';
 
 
 export const routes: Routes = [
@@ -24,6 +25,7 @@ export const routes: Routes = [
   {path:'app-history-solve-quiz',component:HistorySolveQuizComponent},
   {path:'app-english-solve-quiz',component:EnglishSolveQuizComponent},
   {path:'app-science-solve-quiz',component:ScienceSolveQuizComponent},
+  {path:'app-profile',component:ProfileComponent},
 
   { path: '**', redirectTo: '/app-login', pathMatch: 'full' }, // Wildcard route should come last
 ];

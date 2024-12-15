@@ -32,7 +32,7 @@ export class SignupComponent {
       password: this.password,
     };
 
-    this.http.post('http://localhost:3000/api/auth/signup', userData)
+    this.http.post('http://localhost:5000/api/auth/signup', userData)
       .subscribe({
         next: (response) => {
           console.log('User created successfully', response);

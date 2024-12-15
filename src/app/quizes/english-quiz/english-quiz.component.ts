@@ -16,6 +16,6 @@ export class EnglishQuizComponent {
 
   startQuiz(numberOfQuestions: string) {
     alert(`Starting Math Quiz with ${numberOfQuestions} questions!`);
-    // Navigate to the quiz or handle quiz logic here
+    this.router.navigate(['/app-english-solve-quiz']);
   }
 }

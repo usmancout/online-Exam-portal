@@ -32,14 +32,21 @@ export class LoginComponent {
       password: this.password
     };
 
-    this.http.post('http://localhost:3000/api/auth/login', loginData).subscribe({
+    this.http.post('http://localhost:5000/api/auth/login', loginData).subscribe({
       next: (response: any) => {
-        if (response && response.user && response.user.username) {
-          this.userService.setUserName(response.user.username); // Save email in service/localStorage
+        if (response && response.user && response.user.username && response.user.email) {
+          // Store username and email in localStorage
+          localStorage.setItem('userEmail', response.user.email);
+          localStorage.setItem('userName', response.user.username);
+
+          // Optionally, store other data like user token, etc.
+          localStorage.setItem('userToken', response.token); // If there's a token to store
+
+          // Redirect to the dashboard or main page
           this.router.navigate(['/app-main-dashboard']);
         } else {
-          console.error('Username not found in response:', response);
-          this.errorMessage = 'Unexpected error: username missing from server response.';
+          console.error('Username or email not found in response:', response);
+          this.errorMessage = 'Unexpected error: username or email missing from server response.';
         }
       },
       error: (error) => {
@@ -47,7 +54,6 @@ export class LoginComponent {
         this.errorMessage = 'Invalid email or password. Please try again.';
       },
     });
+  }
 
-
-}
 }
