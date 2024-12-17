@@ -1,1 +1,44 @@
-<p>history-solve-quiz works!</p>
+<div class="loading" *ngIf="isLoading">
+  <div class="loading-spinner"></div>
+  <p>Loading questions...</p>
+</div>
+
+<div class="quiz-container" *ngIf="!isLoading">
+  <h1>History Quiz</h1>
+
+  <div *ngIf="currentQuestionIndex >=0; else resultTemplate">
+    <p><strong>Question {{ currentQuestionIndex + 1 }}:</strong></p>
+    <p [innerHTML]="questions[currentQuestionIndex].question"></p>
+
+    <div class="options">
+      <button
+        *ngFor="let option of questions[currentQuestionIndex].options"
+        (click)="selectAnswer(option)"
+        [class.selected]="selectedAnswers[currentQuestionIndex] === option"
+      >
+        {{ option }}
+      </button>
+    </div>
+
+    <p>Time Remaining: {{ timer }} seconds</p>
+
+    <div class="navigation-buttons">
+      <button (click)="previousQuestion()" [disabled]="currentQuestionIndex === 0">
+        Previous
+      </button>
+      <button (click)="nextQuestion()" [disabled]="!selectedAnswers[currentQuestionIndex]">
+        Next
+      </button>
+    </div>
+  </div>
+
+  <ng-template #resultTemplate>
+    <div class="result-container">
+      <h2>Quiz Completed!</h2>
+
+      <p>Hi {{username}}! You answered {{ correctAnswers.length }} correctly out of {{ questions.length }} questions.</p>
+      <p>Your Score: {{ score }}/{{ questions.length }}</p>
+      <button (click)="navigateToDashboard()">Go Back to Dashboard</button>
+    </div>
+  </ng-template>
+</div>

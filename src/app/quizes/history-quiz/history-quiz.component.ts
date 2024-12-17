@@ -16,6 +16,6 @@ export class HistoryQuizComponent {
 
   startQuiz(numberOfQuestions: string) {
     alert(`Starting Math Quiz with ${numberOfQuestions} questions!`);
-    // Navigate to the quiz or handle quiz logic here
+    this.router.navigate(['/app-history-solve-quiz']);
   }
 }
