@@ -28,7 +28,7 @@ export class QuizService {
 
   // Fetch English Quiz Questions
   fetchEnglishQuizQuestions(): Observable<any> {
-    const apiUrl = 'https://opentdb.com/api.php?amount=10&category=9&type=multiple'; // English category ID is 9
+    const apiUrl = 'https://opentdb.com/api.php?amount=10&category=25&type=multiple'; // English category ID is 9
     return this.http.get<any>(apiUrl);
   }
 }

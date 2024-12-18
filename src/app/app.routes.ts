@@ -14,9 +14,9 @@ import {ProfileComponent} from './dashboards/profile/profile.component';
 
 
 export const routes: Routes = [
-  { path: 'app-login', component: LoginComponent },
+  { path: 'app-login', component: LoginComponent,data: {animation:'LoginPage'} },
   {path:'app-signup', component: SignupComponent},
-  {path:'app-main-dashboard', component: MainDashboardComponent},
+  {path:'app-main-dashboard', component: MainDashboardComponent,data :{animation: 'DashboardPage'}},
   {path:'app-math-quiz',component:MathQuizComponent},
   {path:'app-english-quiz',component:EnglishQuizComponent},
   {path:'app-science-quiz',component:ScienceQuizComponent},

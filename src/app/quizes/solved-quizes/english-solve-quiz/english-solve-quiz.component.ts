@@ -27,6 +27,7 @@ export class EnglishSolveQuizComponent implements OnInit {
   constructor(private quizService: QuizService, private router: Router) {}
 
   ngOnInit() {
+    this.username=localStorage.getItem('userName');
     this.loadQuestions();
   }
 
@@ -92,7 +93,7 @@ export class EnglishSolveQuizComponent implements OnInit {
   }
 
   calculateScore() {
-    this.username=localStorage.getItem('userName');
+
     this.correctAnswers = this.questions
       .filter((question, index) => this.selectedAnswers[index] === question.answer)
       .map((question) => question.answer);

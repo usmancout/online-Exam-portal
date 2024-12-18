@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { NgIf } from "@angular/common";
 
 @Component({
@@ -30,6 +30,20 @@ export class HeaderComponent implements OnInit {
       this.email = storedEmail;
       this.isLoggedIn = true;  // User is logged in
     }
+
+    // Listen to router events to dynamically check the current route
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // Hide the dropdown button if the user is on login or signup page
+        const currentRoute = event.urlAfterRedirects;
+        if (currentRoute === '/app-login' || currentRoute === '/app-signup') {
+          this.isLoggedIn = false;
+        }
+        else if(storedUsername && storedEmail){
+          this.isLoggedIn=true;
+        }
+      }
+    });
   }
 
   toggleDropdown() {

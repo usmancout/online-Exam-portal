@@ -1,0 +1,38 @@
+.footer {
+  background-color: #222; /* Dark background */
+  color: #fff; /* White text */
+  padding: 20px 0;
+  text-align: center;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-links {
+  display: flex;
+  gap: 20px; /* Space between icons */
+  margin-bottom: 10px;
+}
+
+.social-links a {
+  color: #fff; /* Icon color */
+  font-size: 24px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #0077b5; /* Change color on hover (e.g., LinkedIn blue) */
+}
+
+.footer-text {
+  font-size: 14px;
+  margin-top: 10px;
+  opacity: 0.8;
+}
